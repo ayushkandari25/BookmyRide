@@ -7,7 +7,7 @@ export const userSignup = (req, res) => {
   try {
     let myPlaintextPassword = req.body.password;
     bcrypt.hash(myPlaintextPassword, saltRounds, async function (err, hash) {
-      if (error) {
+      if (err) {
         res.status(500).json({ message: "Something went wrong" });
       } else {
         await userModel.create({ ...req.body, password: hash });
@@ -34,7 +34,7 @@ export const userLogin = async (req, res) => {
         } else {
           if (result) {
             var token = jwt.sign({ userId: user._id, role:user.role }, process.env.JWT_SECRET_KEY); //if login is
-            res.status(200).json({ message: "Login Sucessfull" });                        //sucess generate token.
+            res.status(200).json({ message: "Login Sucessfull", token });                 //sucess generate token.
           } else {
             res.status(403).json({ message: "Wrong Password" });
           }
