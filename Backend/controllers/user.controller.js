@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { userModel } from "../models/user.model.js";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 
 const saltRounds = 10;
 export const userSignup = (req, res) => {
@@ -33,8 +33,11 @@ export const userLogin = async (req, res) => {
           res.status(500).json({ message: "Something went wrong" });
         } else {
           if (result) {
-            var token = jwt.sign({ userId: user._id, role:user.role }, process.env.JWT_SECRET_KEY); //if login is
-            res.status(200).json({ message: "Login Sucessfull", token });                 //sucess generate token.
+            var token = jwt.sign(
+              { userId: user._id, role: user.role },
+              process.env.JWT_SECRET_KEY
+            ); //if login is
+            res.status(200).json({ message: "Login Sucessfull", token }); //sucess generate token.
           } else {
             res.status(403).json({ message: "Wrong Password" });
           }
@@ -43,6 +46,16 @@ export const userLogin = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
-
   }
+};
+
+export const addDriverDetails = async (req, res) => {
+ try {
+   let user = await userModel.findById(req.userId);
+   user.driverDetails = req.body;
+   await user.save();
+   res.status(201).json({ message: "Driver details Updated" });
+ } catch (error) {
+   res.status(500).json({ message: "Something went wrong" });
+ }
 };

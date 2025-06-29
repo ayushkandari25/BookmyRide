@@ -16,3 +16,6 @@
 ::1 - - [29/Jun/2025:11:52:06 +0000] "POST /users/signup HTTP/1.1" 201 32 "-" "PostmanRuntime/7.44.1"
 ::1 - - [29/Jun/2025:11:52:36 +0000] "POST /users/login HTTP/1.1" 200 216 "-" "PostmanRuntime/7.44.1"
 ::1 - - [29/Jun/2025:11:53:44 +0000] "POST /vehicle/add-vehicle HTTP/1.1" 403 26 "-" "PostmanRuntime/7.44.1"
+::1 - - [29/Jun/2025:16:17:20 +0000] "POST /users/login HTTP/1.1" 200 216 "-" "PostmanRuntime/7.44.1"
+::1 - - [29/Jun/2025:16:18:55 +0000] "PATCH /users/add-driver-details HTTP/1.1" 201 36 "-" "PostmanRuntime/7.44.1"
+::1 - - [29/Jun/2025:16:21:29 +0000] "POST /users/signup HTTP/1.1" 201 32 "-" "PostmanRuntime/7.44.1"

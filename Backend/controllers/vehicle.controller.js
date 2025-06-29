@@ -32,3 +32,13 @@ export const deleteVehicle = async(req,res)=>{
       res.status(500).json({ message: "Something went wrong", error });
     }
 }
+
+
+export const getMyVehicle = async(req,res)=>{
+   try {
+     let vehicleList = await VehicleModel.find({ owner: req.userId });
+     res.status(200).json({ message: "Vehicle List", data: vehicleList });
+   } catch (error) {
+     res.status(500).json({ message: "Something went wrong", error });
+   }
+}

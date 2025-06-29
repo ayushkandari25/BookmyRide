@@ -1,5 +1,5 @@
 import express from "express"
-import { addVehicle, deleteVehicle, updateVehicle } from "../controllers/vehicle.controller.js"
+import { addVehicle, deleteVehicle, getMyVehicle, updateVehicle } from "../controllers/vehicle.controller.js"
 import { authMiddleware } from "../middlewares/auth.middleware.js"
 import { roleBasedAccessControl } from "../middlewares/roleBasedAccess.middleware.js"
 export const VehicalRouter = express.Router()
@@ -8,4 +8,6 @@ VehicalRouter.post("/add-vehicle", authMiddleware, roleBasedAccessControl(["owne
 
 VehicalRouter.patch("/update-vehicle/:vehicleId", authMiddleware, roleBasedAccessControl(["owner"], updateVehicle));
 
-VehicalRouter.patch("/delete-vehicle/:vehicleId", authMiddleware, roleBasedAccessControl(["owner"], deleteVehicle), deleteVehicle);
+VehicalRouter.patch("/delete-vehicle/:vehicleId", authMiddleware, roleBasedAccessControl(["owner"]), deleteVehicle);
+
+VehicalRouter.get("/my-vehicles",authMiddleware, roleBasedAccessControl(["owner"]), getMyVehicle)
